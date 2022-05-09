@@ -9,11 +9,12 @@
     align-items: center;
     
     border-radius: $standard-br;
-    
-    input {
-        margin: 15px;
-    }
 
+    h1 {
+        font-size: 1.3rem;
+        margin-bottom: 0.7rem;
+    }
+    
     ul {
         display: flex;
 
@@ -23,9 +24,19 @@
     }
 }
 
+.inputColor {
+    border-radius: 0.3rem;
+    margin: 1rem;
+    cursor: pointer;
+}
+
 .inputBar,
 .designBar {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.buttonsReset {
+    margin-left: 1.5rem;
 }
 
 .flat {
@@ -40,5 +51,8 @@
     &.colorPanel {
         box-shadow: $shadowOut;
     }
-}
 
+    button {
+        box-shadow: $shadowOut;
+    }
+}

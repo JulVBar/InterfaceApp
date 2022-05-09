@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+select {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    border-radius: $standard-br;
+    min-height: 2.5rem;
+    min-width: 10rem;
+    background: transparent;
+    padding: 0.2rem 0.8rem;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+}

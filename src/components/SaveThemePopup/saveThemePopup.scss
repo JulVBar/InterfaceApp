@@ -1,33 +1,75 @@
+@import '../../styles/variables.scss';
+
+.popup-content {
+    border-radius: $standard-br;
+    background: transparent;
+}
+
 .modal {
-    font-size: 12px;
-  }
-  .modal > .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: $standard-br;
+    padding: 1.5rem 0;
+}
+
+.modal > .header {
     width: 100%;
-    border-bottom: 1px solid gray;
-    font-size: 18px;
     text-align: center;
-    padding: 5px;
-  }
-  .modal > .content {
+    font-size: 1.2rem;
+    padding: 1rem 0.5rem;
+}
+
+.modal > .content {
     width: 100%;
     padding: 10px 5px;
-  }
-  .modal > .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+      margin-bottom: 2rem;
+      border-radius: $standard-br;
+      min-height: 2.5rem;
+      min-width: 20rem;
+      background: transparent;
+      padding: 0.2rem 0.8rem;
+      
+      &:focus {
+          background: #fff;
+          outline: none;
+      }
+    }
+}
+
+.modal > .actions {
     width: 100%;
     padding: 10px 5px;
     margin: auto;
     text-align: center;
-  }
-  .modal > .close {
+}
+
+.modal > .close {
     cursor: pointer;
+    min-width: 2.2rem;
     position: absolute;
     display: block;
-    padding: 2px 5px;
+    padding: 5px;
     line-height: 20px;
     right: -10px;
     top: -10px;
     font-size: 24px;
     background: #ffffff;
-    border-radius: 18px;
+    border-radius: 50%;
     border: 1px solid #cfcece;
-  }
+}
+
+.buttonSave {
+    margin-right: 1.5rem;
+}

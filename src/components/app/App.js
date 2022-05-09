@@ -6,10 +6,15 @@ import ThemeSidebar from '../ThemeSidebar/ThemeSidebar';
 import './app.scss';
 
 const App = () => {
-    const { colors } = useSelector(state => state);
+    const { layout, text } = useSelector(state => state.colors);
 
     return (
-        <main className="app" style={{background: `${colors.layout}`}}>
+        <main 
+            className="app"
+            style={{background: `${layout}`,
+                    color: text,
+            }}
+        >
             <div className="content">
                 <ColorPanel/>
                 <div className="wrapper">
