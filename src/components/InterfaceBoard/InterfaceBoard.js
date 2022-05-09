@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 import './interfaceBoard.scss';
 
-const InterfaceBoard = ({interfaceStyle}) => {
-    const { layoutColor } = useSelector(state => state);
-    const interfaceDesign = classNames('interfaceBoard', interfaceStyle);
+const InterfaceBoard = () => {
+    const { layoutColor, themeStyle } = useSelector(state => state);
+    const interfaceDesign = classNames('interfaceBoard', themeStyle);
 
     return (
         <div className={interfaceDesign}>

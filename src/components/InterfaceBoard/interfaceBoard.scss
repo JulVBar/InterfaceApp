@@ -1,12 +1,10 @@
+@import '../../styles/variables.scss';
+
+
 .interfaceBoard {
     height: 600px;
     width: 100%;
     background: rgb(179, 174, 217);
     margin-bottom: 150px;
-
-    button {
-        width: 150px;
-        height: 80px;
-        margin: 20px;
-    }
+    padding: $padding;
 }

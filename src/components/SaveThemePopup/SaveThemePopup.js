@@ -8,7 +8,7 @@ import './saveThemePopup.scss';
 
 const SaveThemePopup = () => {
     const [themeName, setThemeName] = useState('');
-    const { layoutColor, primaryColor, userThemes } = useSelector(state => state);
+    const { colors, userThemes } = useSelector(state => state);
     const dispatch = useDispatch();
 
     const onChangeValue = (e) => {
@@ -21,8 +21,7 @@ const SaveThemePopup = () => {
 
         const savedTheme = {
             title: themeName,
-            layoutColor,
-            primaryColor,
+            colors,
         }
 
         // console.log(savedTheme);

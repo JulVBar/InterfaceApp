@@ -1,14 +1,13 @@
-export const layoutColorSetting = (color) => {
+export const colorsSetting = (colors) => {
     return {
-        type: 'LAYOUT_COLOR',
-        payload: color,
+        type: 'SET_COLORS',
+        payload: colors,
     }
 }
 
-export const primaryColorSetting = (color) => {
+export const setDefaultColors = () => {
     return {
-        type: 'PRIMARY_COLOR',
-        payload: color,
+        type: 'DEFAULT_COLORS',
     }
 }
 

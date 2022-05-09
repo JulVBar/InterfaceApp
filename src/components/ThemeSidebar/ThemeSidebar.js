@@ -1,8 +1,8 @@
 import ThemeItem from '../ThemeItem/ThemeItem';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { layoutColorSetting, primaryColorSetting, userThemesSetting } from '../../actions';
-import { galaxyThemesConstants } from './galaxyThemesConstants';
+import { colorsSetting, userThemesSetting, setDefaultColors } from '../../actions';
+import { GALAXY_THEMES } from './galaxyThemesConstants';
 
 import './themeSidebar.scss';
 
@@ -21,23 +21,21 @@ const ThemeSidebar = () => {
     
     const onThemeChange = (theme) => {
         // console.log(e.target);
-        dispatch(layoutColorSetting(theme.layoutColor))
-        dispatch(primaryColorSetting(theme.primaryColor))
+        dispatch(colorsSetting(theme.colors))
     }
 
     const onThemeDelete = (theme) => {
         localStorage.removeItem(theme.title);
         const filteredThemes = userThemes.filter(item => item.title !== theme.title)
         dispatch(userThemesSetting(filteredThemes));
-        dispatch(layoutColorSetting('#ffffff'));
-        dispatch(primaryColorSetting('#ffffff'));
+        dispatch(setDefaultColors());
     }
 
     return (
         <div className="themeSidebar">
             <h3>Galaxy themes</h3>
             <ul>
-                {galaxyThemesConstants.map((item, index) => (
+                {GALAXY_THEMES.map((item, index) => (
                     <li
                         key={`${item.title}-${index}`}
                         onClick={() => onThemeChange(item)}>

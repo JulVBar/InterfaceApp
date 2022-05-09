@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import './variables.scss';
 
 * {
     margin: 0;
@@ -11,4 +12,12 @@
 
 ul {
     padding: 0;
+}
+
+button {
+    padding: 0.9rem 0.2rem;
+    min-width: 10rem;
+    border-radius: $standard-br;
+    border: none;
+    cursor: pointer;
 }

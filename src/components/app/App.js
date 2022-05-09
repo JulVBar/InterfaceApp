@@ -1,37 +1,20 @@
+import { useSelector } from 'react-redux';
 import ColorPanel from '../ColorPanel/ColorPanel';
 import InterfaceBoard from '../InterfaceBoard/InterfaceBoard';
 import ThemeSidebar from '../ThemeSidebar/ThemeSidebar';
-import { useSelector } from 'react-redux';
-
-import classNames from 'classnames';
 
 import './app.scss';
 
 const App = () => {
-    const { themeStyle } = useSelector(state => state);
-    let interfaceStyle;
-
-    switch (themeStyle) {
-        case "red":
-            interfaceStyle = classNames('red');
-            break;
-        case "blue":
-            interfaceStyle = classNames('blue');
-            break;
-        case "green":
-            interfaceStyle = classNames('green');
-            break;
-        default:
-            interfaceStyle = classNames('white');
-    }
+    const { colors } = useSelector(state => state);
 
     return (
-        <main className="app">
+        <main className="app" style={{background: `${colors.layout}`}}>
             <div className="content">
-                <ThemeSidebar/>
+                <ColorPanel/>
                 <div className="wrapper">
-                    <ColorPanel interfaceStyle={interfaceStyle}/>
-                    <InterfaceBoard interfaceStyle={interfaceStyle}/>
+                    <ThemeSidebar/>
+                    <InterfaceBoard/>
                 </div>
                 
             </div>

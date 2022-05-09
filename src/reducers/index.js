@@ -1,23 +1,29 @@
 
 const initialState = {
-    layoutColor: '#ffffff',
-    primaryColor: '#ffffff',
+    colors: {
+        layout: '#E5E5E5',
+        main: '#FFFFFF',
+        disabled: '#C8C8CE',
+        primary: '#FF9D4D',
+        secondary: '#FF4C56',
+        text: '#0F0E0E'
+    },
     userThemes: [],
-    themeStyle: 'white',
+    themeStyle: 'flat',
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'LAYOUT_COLOR':
+        case 'SET_COLORS':
             return {
                 ...state,
-                layoutColor: action.payload,
+                colors: action.payload,
             }
-        case 'PRIMARY_COLOR':
-            return {
-                ...state,
-                primaryColor: action.payload,
-            }
+        case 'DEFAULT_COLORS':
+                return {
+                    ...state,
+                    colors: initialState.colors,
+                }
         case 'INIT_LOCALSTORAGE':
             return {
                 ...state,

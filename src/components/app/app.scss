@@ -4,7 +4,6 @@
 }
 
 .content {
-    display: flex;
     max-width: 1260px;
     margin: 0 auto;
     padding-top: 50px;
@@ -14,26 +13,5 @@
 }
 
 .wrapper {
-    width: 80%;
-}
-
-.blue {
-    button {
-        background: blue;
-    }
-}
-
-.red {
-    button {
-        background: red;
-    }
-}
-
-.green {
-    border: 1px solid yellowgreen;
-
-    button {
-        background: green;
-        border-radius: 20px;
-    }
+    display: flex;
 }
