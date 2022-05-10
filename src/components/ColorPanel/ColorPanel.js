@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { colorsSetting, setDefaultColors } from '../../actions';
+import { colorsSetting, setDefaultColors, setActiveTheme } from '../../actions';
 import SaveThemePopup from '../SaveThemePopup/SaveThemePopup';
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
+import ButtonGradientBorder from '../ButtonGradientBorder/ButtonGradientBorder';
 import classNames from 'classnames';
 
 import './colorPanel.scss';
@@ -25,6 +26,7 @@ const ColorPanel = () => {
     const resetHandler = useCallback(
         () => {
             dispatch(setDefaultColors());
+            dispatch(setActiveTheme(''));
         },[dispatch]);   
 
     const interfaceDesign = classNames('colorPanel', themeStyle);
@@ -62,23 +64,14 @@ const ColorPanel = () => {
             <div className="buttonsBar">
                 <SaveThemePopup />
 
-                <button
-                    className="buttonsReset btnGradientBorder"
-                    style={{color: text}}
+                <ButtonGradientBorder
                     type="button"
-                    onClick={resetHandler}
-                >
-                    <svg id="storage" width="0" height="0" viewBox="0 0 0 0">
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="10%">
-                            <stop offset="0%" stopColor={primary}></stop>
-                            <stop offset="100%" stopColor={secondary}></stop>
-                        </linearGradient>  
-                    </svg>
-                    <svg className="gradientBorder">
-                        <rect rx="10" ry="10" x="3" y="3" />
-                    </svg>
-                    Reset
-                </button>
+                    textColor={text}
+                    primaryColor={primary}
+                    secondaryColor={secondary}
+                    handler={resetHandler}
+                    buttonText="Reset"
+                />
             </div>
         </div>
     )

@@ -8,6 +8,7 @@ const initialState = {
         secondary: '#FF4C56',
         text: '#0F0E0E'
     },
+    activeTheme: '',
     userThemes: [],
     themeStyle: 'flat',
 }
@@ -28,6 +29,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 userThemes: action.payload,
+            }
+        case 'ACTIVE_THEME':
+            return {
+                ...state,
+                activeTheme: action.payload,
             }
         case 'CHANGE_THEMESTYLE':
             return {

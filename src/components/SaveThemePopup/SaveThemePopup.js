@@ -1,7 +1,8 @@
 import Popup from 'reactjs-popup';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userThemesSetting } from '../../actions';
+import ButtonGradientBorder from '../ButtonGradientBorder/ButtonGradientBorder';
 import { gradient } from '../../constants/styleConstants';
 
 import 'reactjs-popup/dist/index.css';
@@ -85,26 +86,17 @@ const SaveThemePopup = () => {
                             >
                                 Save
                             </button>
-                            <button
-                                className="buttonsReset btnGradientBorder"
-                                style={{color: text}}
+                            <ButtonGradientBorder
                                 type="reset"
-                                onClick={() => {
+                                textColor={text}
+                                primaryColor={primary}
+                                secondaryColor={secondary}
+                                handler={() => {
                                     setThemeName('');
                                     close();
                                 }}
-                            >
-                                <svg id="storage" width="0" height="0" viewBox="0 0 0 0">
-                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="10%">
-                                        <stop offset="0%" stopColor={primary}></stop>
-                                        <stop offset="100%" stopColor={secondary}></stop>
-                                    </linearGradient>  
-                                </svg>
-                                <svg className="gradientBorder">
-                                    <rect rx="10" ry="10" x="3" y="3" />
-                                </svg>
-                                Close
-                            </button>
+                                buttonText="Close"
+                            />
                         </div>
                     </form>
                 </div>

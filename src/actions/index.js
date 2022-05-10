@@ -11,6 +11,13 @@ export const setDefaultColors = () => {
     }
 }
 
+export const setActiveTheme = (theme) => {
+    return {
+        type: 'ACTIVE_THEME',
+        payload: theme,
+    }
+}
+
 export const userThemesSetting = (themes) => {
     return {
         type: 'INIT_LOCALSTORAGE',

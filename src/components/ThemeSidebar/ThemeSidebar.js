@@ -1,16 +1,18 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { colorsSetting, userThemesSetting, setDefaultColors } from '../../actions';
+import { colorsSetting, userThemesSetting, setDefaultColors, setActiveTheme } from '../../actions';
 import { GALAXY_THEMES } from '../../constants/galaxyThemesConstants';
+import { gradient } from '../../constants/styleConstants';
 import Icon from '../Icon/Icon';
+import styled from 'styled-components';
 import './themeSidebar.scss';
 
 const ThemeSidebar = () => {
-    const { userThemes } = useSelector(state => state);
-    const { main, disabled } = useSelector(state => state.colors);
+    const { userThemes, activeTheme } = useSelector(state => state);
+    const { main, disabled, primary, secondary } = useSelector(state => state.colors);
+    const {linear, degrees, from, to} = gradient;
 
     const dispatch = useDispatch();
-    const itemRefs = useRef([]);
 
     const themes = (Object.values(localStorage)).map(item => JSON.parse(item));
     const themesList = [...GALAXY_THEMES, ...userThemes];
@@ -19,12 +21,11 @@ const ThemeSidebar = () => {
         dispatch(userThemesSetting(themes));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    
+
     const onThemeChange = useCallback(
         (theme) => {
             dispatch(colorsSetting(theme.colors))
         },[dispatch]);
-    
 
     const onThemeDelete = useCallback(
         (theme) => {
@@ -34,28 +35,34 @@ const ThemeSidebar = () => {
             dispatch(setDefaultColors());
         },[dispatch, userThemes]);
 
-    const focusOnItem = useCallback(
-        (title) => {
-            itemRefs.current.forEach(item => item.classList.remove('themeActive'));
-            itemRefs.current[title].classList.add('themeActive');
-            itemRefs.current[title].focus();
-        },[]);
+    const onActiveTheme = useCallback(
+        (item) => {
+            dispatch(setActiveTheme(item.title));
+        },[dispatch]);
+
+    const ThemeList = styled.ul`
+        li {
+            &.themeActive {
+                background: ${linear}(${degrees}, ${primary} ${from}, ${secondary} ${to})
+            }
+        }
+    `;
 
     return (
         <div className="themeSidebar" style={{background: main}}>
-            {/* <h2>Themes:</h2> */}
-            <ul>
+            <ThemeList>
                 {themesList.map((item, index) => (
                     <li 
-                        className='themeItem'
+                        className={activeTheme === item.title ? 'themeActive themeItem' : 'themeItem'}
                         key={`${item.title}-${index}`}
                         title={item.title}
-                        ref={el => itemRefs.current[index] = el}
+                        
+                        onClick={()=>{onActiveTheme(item)}}
                     >
                         <span 
                             onClick={() => {
                                 onThemeChange(item);
-                                focusOnItem(index);
+                                
                             }}
                         >
                             {item.title}
@@ -71,7 +78,7 @@ const ThemeSidebar = () => {
                         }
                     </li>
                 ))}
-            </ul>
+            </ThemeList>
         </div>
     )
 }

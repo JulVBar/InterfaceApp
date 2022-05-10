@@ -1,15 +1,30 @@
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 
+import styled from 'styled-components';
+
 import './interfaceBoard.scss';
 
 const InterfaceBoard = () => {
-    const { layoutColor, themeStyle } = useSelector(state => state);
+    const { colors, themeStyle } = useSelector(state => state);
     const interfaceDesign = classNames('interfaceBoard', themeStyle);
+
+    const Button = styled.button`
+      font-size: 1.5em;
+      text-align: center;
+      color: ${colors.primary};
+
+      &:hover {
+        background: ${colors.primary};
+      }
+    `;
 
     return (
         <div className={interfaceDesign}>
-            <button type="button" style={{background: `${layoutColor}`}}>Show me</button>
+          <Button>
+            Show
+          </Button>
+            {/* <button type="button" style={{background: `${colors.layout}`}}>Show me</button> */}
         </div>
     )
 }

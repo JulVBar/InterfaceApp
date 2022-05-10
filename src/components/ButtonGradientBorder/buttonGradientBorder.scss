@@ -1,0 +1,19 @@
+.gradientBorder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+
+    rect {
+        fill: none;
+        stroke: url(#gradient);
+        stroke-width: 4px;
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+    }
+}
+//   .btn:hover rect{
+//     stroke:green;
+//   }
