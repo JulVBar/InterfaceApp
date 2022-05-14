@@ -1,21 +1,15 @@
 import { useSelector } from 'react-redux';
-import { createBoxShadow } from '../../../utils/drawFunctions';
 import Icon from '../../Icon/Icon';
-import './musicPlayer.scss';
-import { gradient } from '../../../constants/styleConstants';
 import picture from '../../../assets/picture.jpg';
+import './musicPlayer.scss';
 
-const MusicPlayer = () => {
-    const { colors, themeStyle, activeTheme } = useSelector(state => state);
-    const { main, layout, disabled, text, primary, secondary } = colors;
-    const isNeuromorphic = themeStyle === 'neuromorphic';
-    const boxShadow = isNeuromorphic ? createBoxShadow(true, layout) : 'none';
-    const {linear, degrees, from, to} = gradient;
+const MusicPlayer = ({colors, isNeuromorphic, gradientColor, shadowOut, shadowOutMain, shadowInnerMain}) => {
+    const { activeTheme } = useSelector(state => state);
+    const { main, disabled, text } = colors;
+
     const activeThemeTitle = activeTheme ? activeTheme.slice(0, 50) : 'Active Theme Title';
 
     const iconBorderStyle = isNeuromorphic ? 'none' : `1px solid ${disabled}`;
-    const iconButtonShadow = isNeuromorphic ? createBoxShadow(true, main) : 'none';
-    const sliderShadow = isNeuromorphic ? createBoxShadow(false, main) : 'none';
     const sliderBackground = isNeuromorphic ? 'transparent' : disabled;
     const lineHeight = isNeuromorphic ? '60%' : '100%';
     const lineLeftPosition = isNeuromorphic ? '0.2rem' : '0';
@@ -24,7 +18,7 @@ const MusicPlayer = () => {
         <div
             className='musicPlayer'
             style={{background: main,
-                boxShadow: boxShadow}}
+                boxShadow: shadowOut}}
         >
             <div className='musicPlayer__image'>
                 <img  src={picture} alt="galaxy" />
@@ -35,14 +29,13 @@ const MusicPlayer = () => {
                     <div 
                         className='musicPlayer__slider--path'
                         style={{background: sliderBackground,
-                                boxShadow: sliderShadow}}>
+                                boxShadow: shadowInnerMain}}>
                         <div 
                             className='musicPlayer__slider--line' 
-                            style={{background: `${linear}(${degrees}, ${primary} ${from}, ${secondary} ${to})`,
+                            style={{background: gradientColor,
                                     height: lineHeight,
                                     left: lineLeftPosition}}
-                        >
-                                </div>
+                        />
                     </div>
                     <div
                         className='musicPlayer__slider--time'
@@ -54,7 +47,8 @@ const MusicPlayer = () => {
                 <div className='musicPlayer__playerButtons'>
                     <div 
                         className='musicPlayer__icon' 
-                        style={{border: iconBorderStyle, boxShadow: iconButtonShadow}}>
+                        style={{border: iconBorderStyle, boxShadow: shadowOutMain}}
+                    >
                         <Icon
                             name='trash'
                             iconColor={disabled}
@@ -62,14 +56,17 @@ const MusicPlayer = () => {
                     </div>
                     <div 
                         className='musicPlayer__icon' 
-                        style={{border: iconBorderStyle, boxShadow: iconButtonShadow}}>
+                        style={{border: iconBorderStyle, boxShadow: shadowOutMain}}
+                    >
                         <Icon
                             name='trash'
                             iconColor={text}
                         />
-                    </div><div 
+                    </div>
+                    <div 
                         className='musicPlayer__icon' 
-                        style={{border: iconBorderStyle, boxShadow: iconButtonShadow}}>
+                        style={{border: iconBorderStyle, boxShadow: shadowOutMain}}
+                    >
                         <Icon
                             name='trash'
                             iconColor={disabled}

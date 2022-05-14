@@ -15,4 +15,16 @@
     width: 49%;
     padding: 1rem;
     border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--top {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 1.5rem;
+        margin-bottom: 2rem;
+    }
 }
+

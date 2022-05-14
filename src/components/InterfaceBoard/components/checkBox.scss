@@ -1,0 +1,28 @@
+@import '../../../styles/variables.scss';
+
+.checkBoxBar {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.checkboxWrapper {
+    position: relative;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all .3s linear;
+}
+
+.checkboxPointer {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    transition: all .3s linear;
+}
