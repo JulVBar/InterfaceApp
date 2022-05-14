@@ -1,8 +1,8 @@
 
 const initialState = {
     colors: {
-        layout: '#E5E5E5',
-        main: '#FFFFFF',
+        layout: '#DBDBDB',
+        main: '#E5E5E5',
         disabled: '#C8C8CE',
         primary: '#FF9D4D',
         secondary: '#FF4C56',

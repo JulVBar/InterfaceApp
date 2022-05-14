@@ -2,17 +2,18 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { colorsSetting, setDefaultColors, setActiveTheme } from '../../actions';
 import SaveThemePopup from '../SaveThemePopup/SaveThemePopup';
-import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
+import ThemeDesignSwitcher from '../ThemeDesignSwitcher/ThemeDesignSwitcher';
 import ButtonGradientBorder from '../ButtonGradientBorder/ButtonGradientBorder';
-import classNames from 'classnames';
+import { createBoxShadow } from '../../utils/drawFunctions';
 
 import './colorPanel.scss';
 
 const ColorPanel = () => {
-    const { themeStyle, colors } = useSelector(state => state);
+    const { colors, themeStyle } = useSelector(state => state);
     const dispatch = useDispatch();
 
-    const {main, primary, secondary, text, disabled} = colors;
+    const {layout, main, primary, secondary, text, disabled} = colors;
+    const isNeuromorphic = themeStyle === 'neuromorphic';
 
     const colorHandler = useCallback(
         (e, colorName) => {
@@ -27,14 +28,16 @@ const ColorPanel = () => {
         () => {
             dispatch(setDefaultColors());
             dispatch(setActiveTheme(''));
-        },[dispatch]);   
+        },[dispatch]);
 
-    const interfaceDesign = classNames('colorPanel', themeStyle);
-
+    const boxShadow = isNeuromorphic ? createBoxShadow(true, layout) : 'none';
+    const buttonShadow = createBoxShadow(true, main);
+    
     return (
         <div
-            className={interfaceDesign}
-            style={{background: main}}
+            className='colorPanel'
+            style={{background: main,
+                    boxShadow: boxShadow}}
         >
             <h1 style={{color: text}}>Choose colors of your theme</h1>
             <div className="inputBar">
@@ -59,19 +62,33 @@ const ColorPanel = () => {
             </div>
             <div className="designBar">
                 Choose Design:
-                <ThemeSwitcher /> 
+                <ThemeDesignSwitcher /> 
             </div>
             <div className="buttonsBar">
                 <SaveThemePopup />
 
-                <ButtonGradientBorder
-                    type="button"
-                    textColor={text}
-                    primaryColor={primary}
-                    secondaryColor={secondary}
-                    handler={resetHandler}
-                    buttonText="Reset"
-                />
+                {isNeuromorphic && (
+                    <button
+                        type="button"
+                        onClick={resetHandler}
+                        style={{background: `transparent`,
+                                boxShadow: buttonShadow,
+                                color: text}}
+                    >
+                        Reset
+                    </button>
+                )}
+
+                {!isNeuromorphic && (
+                    <ButtonGradientBorder
+                        type="button"
+                        textColor={text}
+                        primaryColor={primary}
+                        secondaryColor={secondary}
+                        handler={resetHandler}
+                        buttonText="Reset"
+                    />
+                )}
             </div>
         </div>
     )

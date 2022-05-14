@@ -1,30 +1,26 @@
 import { useSelector } from 'react-redux';
-import classNames from 'classnames';
+import { createBoxShadow } from '../../utils/drawFunctions';
 
-import styled from 'styled-components';
+import MusicPlayer from './components/MusicPlayer';
 
 import './interfaceBoard.scss';
 
 const InterfaceBoard = () => {
     const { colors, themeStyle } = useSelector(state => state);
-    const interfaceDesign = classNames('interfaceBoard', themeStyle);
-
-    const Button = styled.button`
-      font-size: 1.5em;
-      text-align: center;
-      color: ${colors.primary};
-
-      &:hover {
-        background: ${colors.primary};
-      }
-    `;
+    const { layout } = colors;
+    const isNeuromorphic = themeStyle === 'neuromorphic';
+    const boxShadow = isNeuromorphic ? createBoxShadow(true, layout) : 'none';
 
     return (
-        <div className={interfaceDesign}>
-          <Button>
-            Show
-          </Button>
-            {/* <button type="button" style={{background: `${colors.layout}`}}>Show me</button> */}
+        <div
+            className='interfaceBoard' 
+            style={{background: layout,
+                    boxShadow: boxShadow}}
+        >
+            <div className='interfaceBoardColumn'>
+                <MusicPlayer />
+            </div>
+            <div className='interfaceBoardColumn'>2</div>
         </div>
     )
 }

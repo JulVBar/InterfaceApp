@@ -1,21 +1,24 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { colorsSetting, userThemesSetting, setDefaultColors, setActiveTheme } from '../../actions';
 import { GALAXY_THEMES } from '../../constants/galaxyThemesConstants';
 import { gradient } from '../../constants/styleConstants';
 import Icon from '../Icon/Icon';
+import { createBoxShadow } from '../../utils/drawFunctions';
 import styled from 'styled-components';
 import './themeSidebar.scss';
 
 const ThemeSidebar = () => {
-    const { userThemes, activeTheme } = useSelector(state => state);
-    const { main, disabled, primary, secondary } = useSelector(state => state.colors);
+    const { userThemes, activeTheme, themeStyle } = useSelector(state => state);
+    const { layout, main, disabled, primary, secondary } = useSelector(state => state.colors);
     const {linear, degrees, from, to} = gradient;
 
     const dispatch = useDispatch();
 
     const themes = (Object.values(localStorage)).map(item => JSON.parse(item));
     const themesList = [...GALAXY_THEMES, ...userThemes];
+
+    const isNeuromorphic = themeStyle === 'neuromorphic';
 
     useEffect(() => {
         dispatch(userThemesSetting(themes));
@@ -40,7 +43,18 @@ const ThemeSidebar = () => {
             dispatch(setActiveTheme(item.title));
         },[dispatch]);
 
+    const boxShadow = isNeuromorphic ? createBoxShadow(true, layout) : 'none';
+
     const ThemeList = styled.ul`
+        &.neuromorphic {
+            li {
+                &.themeActive {
+                    background: transparent;
+                    box-shadow: ${createBoxShadow (false, main)};
+                }
+            }
+        }
+
         li {
             &.themeActive {
                 background: ${linear}(${degrees}, ${primary} ${from}, ${secondary} ${to})
@@ -49,8 +63,12 @@ const ThemeSidebar = () => {
     `;
 
     return (
-        <div className="themeSidebar" style={{background: main}}>
-            <ThemeList>
+        <div 
+            className="themeSidebar"
+            style={{background: main,
+                    boxShadow: boxShadow}}
+        >
+            <ThemeList className={themeStyle}>
                 {themesList.map((item, index) => (
                     <li 
                         className={activeTheme === item.title ? 'themeActive themeItem' : 'themeItem'}

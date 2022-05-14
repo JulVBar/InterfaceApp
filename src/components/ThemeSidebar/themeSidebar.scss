@@ -49,6 +49,7 @@
         width: 90%;
         cursor: pointer;
         transition: transform 0.2s linear;
+        padding-left: 0.3rem;
 
         &:hover {
             transform: scale(1.1);

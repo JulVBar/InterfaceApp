@@ -5,4 +5,14 @@
     height: $height;
     width: 100%;
     padding: $padding;
+    border-radius: $standard-br;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.interfaceBoardColumn {
+    width: 49%;
+    padding: 1rem;
+    border: 1px solid red;
 }

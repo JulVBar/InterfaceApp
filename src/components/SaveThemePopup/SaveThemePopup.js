@@ -4,17 +4,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { userThemesSetting } from '../../actions';
 import ButtonGradientBorder from '../ButtonGradientBorder/ButtonGradientBorder';
 import { gradient } from '../../constants/styleConstants';
-
+import { createBoxShadow } from '../../utils/drawFunctions';
 import 'reactjs-popup/dist/index.css';
 import './saveThemePopup.scss';
 
 const SaveThemePopup = () => {
     const [themeName, setThemeName] = useState('');
-    const { colors, userThemes } = useSelector(state => state);
+    const { colors, userThemes, themeStyle } = useSelector(state => state);
     const dispatch = useDispatch();
 
     const {linear, degrees, from, to} = gradient;
     const {layout, main, primary, secondary, disabled, text} = colors;
+
+    const isNeuromorphic = themeStyle === 'neuromorphic';
 
     const onChangeValue = useCallback(
         (e) => {
@@ -38,11 +40,16 @@ const SaveThemePopup = () => {
             setThemeName('');
         },[themeName, colors, userThemes, dispatch]);
 
+    const buttonColorShadow = isNeuromorphic ? createBoxShadow(true, primary) : 'none';
+    const buttonShadow = createBoxShadow(true, main);
+
     return (
         <Popup
             trigger={<button
                     type="button"
+                    className="buttonColor"
                     style={{background: `${linear}(${degrees}, ${primary} ${from}, ${secondary} ${to})`,
+                            boxShadow: buttonColorShadow,
                             color: main}}>
                         Save as
                     </button>}
@@ -76,17 +83,33 @@ const SaveThemePopup = () => {
                         <div className="actions">
                             <button
                                 type="submit"
-                                className="buttonSave"
+                                className="buttonColor"
                                 onClick={(e) => {
                                     onSubmit(e);
                                     close();
                                 }}
                                 style={{background: `${linear}(${degrees}, ${primary} ${from}, ${secondary} ${to})`,
-                                color: main}}
+                                        boxShadow: buttonColorShadow,
+                                        color: main}}
                             >
                                 Save
                             </button>
-                            <ButtonGradientBorder
+                            {isNeuromorphic && (
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setThemeName('');
+                                        close();
+                                    }}
+                                    style={{background: `transparent`,
+                                            boxShadow: buttonShadow,
+                                            color: text}}
+                                >
+                                    Close
+                                </button>
+                            )}
+                            {!isNeuromorphic && (
+                                <ButtonGradientBorder
                                 type="reset"
                                 textColor={text}
                                 primaryColor={primary}
@@ -97,6 +120,8 @@ const SaveThemePopup = () => {
                                 }}
                                 buttonText="Close"
                             />
+                            )}
+                            
                         </div>
                     </form>
                 </div>

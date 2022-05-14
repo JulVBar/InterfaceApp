@@ -11,7 +11,7 @@ const ButtonGradientBorder =  ({
     return (
         <button
             type={type}
-            className="buttonsReset btnGradientBorder"
+            className="btnGradientBorder"
             style={{color: textColor}}
             onClick={handler}
         >
