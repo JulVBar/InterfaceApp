@@ -20,6 +20,8 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "concurrently \"react-scripts start\" \"npx json-server heroes.json --port 3001\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -42,5 +44,6 @@
   },
   "devDependencies": {
     "classnames": "^2.3.1"
-  }
+  },
+  "homepage": "https://julvbar.github.io/InterfaceApp/"
 }
