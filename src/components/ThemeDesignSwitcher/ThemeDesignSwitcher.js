@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
 import { changeThemeStyle } from '../../actions';
-import { createBoxShadow } from '../../utils/drawFunctions';
 
 import './themeDesignSwitcher.scss';
 
-const ThemeDesignSwitcher = () => {
+const ThemeDesignSwitcher = ({isNeuromorphic, shadowInnerMain}) => {
     const { themeStyle } = useSelector(state => state);
-    const { disabled, text, main } = useSelector(state => state.colors);
+    const { disabled, text } = useSelector(state => state.colors);
     const dispatch = useDispatch();
 
     const switchThemeHandler = useCallback(
@@ -16,15 +15,14 @@ const ThemeDesignSwitcher = () => {
             dispatch(changeThemeStyle(value));
         },[dispatch]);
     
-    const inputBorder = themeStyle === 'neuromorphic' ? 'none' : `1px solid ${disabled}`;
-    const inputShadow = themeStyle === 'neuromorphic' ? createBoxShadow(false, main) : 'none';
+    const inputBorder = isNeuromorphic ? 'none' : `1px solid ${disabled}`;
 
     return (
         <select 
             value={themeStyle}
             onChange={switchThemeHandler}
             style={{border: inputBorder,
-                    boxShadow: inputShadow,
+                    boxShadow: shadowInnerMain,
                     color: text
             }}
         >

@@ -1,0 +1,40 @@
+@import '../../../styles/variables.scss';
+
+.pagination {
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    ul {
+        list-style: none;
+        display: flex;
+        border-radius: $standard-br;
+        padding: 0.5rem 1rem;
+        margin: 0 0.3rem;
+
+        li {
+            width: 2rem;
+            height: 2rem;
+            border-radius: $standard-br;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+    
+            &:not(:last-child) {
+                margin-right: 0.2rem;
+            }
+        }
+    }
+
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    &__arrow {
+        transform: rotate(180deg);
+    }
+}

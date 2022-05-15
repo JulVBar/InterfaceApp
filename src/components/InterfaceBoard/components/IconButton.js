@@ -9,7 +9,7 @@ const IconButton = ({main, disabled, isNeuromorphic, gradientColor, shadowInner}
     return (
         <div className="iconButton" style={{boxShadow: shadowInner, background: backgroundColor}}>
             <Icon
-                name='trash'
+                name='settings'
                 iconColor={iconColor}
             />
         </div>

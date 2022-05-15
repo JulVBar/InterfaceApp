@@ -1,30 +1,28 @@
 import { useSelector } from 'react-redux';
-import { createBoxShadow } from '../../utils/drawFunctions';
-import { gradient } from '../../constants/styleConstants';
-
 import MusicPlayer from './components/MusicPlayer';
 import CheckBox from './components/CheckBox';
 import TimeLine from './components/TimeLine';
 import IconBage from './components/IconBage';
 import IconButton from './components/IconButton';
 import PillarBar from './components/PillarBar';
-
+import Pagination from './components/Pagination';
+import DropDown from './components/DropDown';
 import './interfaceBoard.scss';
 
-const InterfaceBoard = () => {
-    const { colors, themeStyle } = useSelector(state => state);
-    const {layout, main, primary, secondary, text, disabled} = colors;
+const InterfaceBoard = ({
+    isNeuromorphic,
+    shadowColor,
+    shadowOut,
+    shadowInner,
+    shadowOutMain,
+    shadowInnerMain,
+    gradientColor,
+    gradientColorVert,
+    themeStyle,
+}) => {
 
-    const isNeuromorphic = themeStyle === 'neuromorphic';
-    const shadowOut = isNeuromorphic ? createBoxShadow(true, layout) : 'none';
-    const shadowInner = isNeuromorphic ? createBoxShadow(false, layout) : 'none';
-
-    const shadowOutMain = isNeuromorphic ? createBoxShadow(true, main) : 'none';
-    const shadowInnerMain = isNeuromorphic ? createBoxShadow(false, main) : 'none';
-
-    const {linear, degrees, degreesVert, from, to} = gradient;
-    const gradientColor = `${linear}(${degrees}, ${primary} ${from}, ${secondary} ${to})`;
-    const gradientColorVert = `${linear}(${degreesVert}, ${primary} ${from}, ${secondary} ${to})`;
+    const { colors } = useSelector(state => state);
+    const {layout, main, text, disabled} = colors;
 
     return (
         <div
@@ -78,7 +76,22 @@ const InterfaceBoard = () => {
                         />
                     </div>
                 </div>
-                
+                <Pagination
+                    main={main}
+                    disabled={disabled}
+                    text={text}
+                    themeStyle={themeStyle}
+                    gradientColor={gradientColor}
+                    shadowOut={shadowOut}
+                    shadowInnerMain={shadowInnerMain}
+                />
+                <DropDown
+                    main={main}
+                    text={text}
+                    gradientColor={gradientColor}
+                    shadowColor={shadowColor}
+                    shadowInnerMain={shadowInnerMain}
+                />
             </div>
         </div>
     )

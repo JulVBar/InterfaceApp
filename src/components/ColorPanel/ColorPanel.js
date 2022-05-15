@@ -4,16 +4,13 @@ import { colorsSetting, setDefaultColors, setActiveTheme } from '../../actions';
 import SaveThemePopup from '../SaveThemePopup/SaveThemePopup';
 import ThemeDesignSwitcher from '../ThemeDesignSwitcher/ThemeDesignSwitcher';
 import ButtonGradientBorder from '../ButtonGradientBorder/ButtonGradientBorder';
-import { createBoxShadow } from '../../utils/drawFunctions';
 
 import './colorPanel.scss';
 
-const ColorPanel = () => {
-    const { colors, themeStyle } = useSelector(state => state);
+const ColorPanel = ({isNeuromorphic, shadowOut, shadowInnerMain, shadowColor, gradientColor, buttonShadow}) => {
+    const { colors } = useSelector(state => state);
+    const {main, primary, secondary, text, disabled} = colors;
     const dispatch = useDispatch();
-
-    const {layout, main, primary, secondary, text, disabled} = colors;
-    const isNeuromorphic = themeStyle === 'neuromorphic';
 
     const colorHandler = useCallback(
         (e, colorName) => {
@@ -30,14 +27,13 @@ const ColorPanel = () => {
             dispatch(setActiveTheme(''));
         },[dispatch]);
 
-    const boxShadow = isNeuromorphic ? createBoxShadow(true, layout) : 'none';
-    const buttonShadow = createBoxShadow(true, main);
+    
     
     return (
         <div
             className='colorPanel'
             style={{background: main,
-                    boxShadow: boxShadow}}
+                    boxShadow: shadowOut}}
         >
             <h1 style={{color: text}}>Choose colors of your theme</h1>
             <div className="inputBar">
@@ -62,10 +58,18 @@ const ColorPanel = () => {
             </div>
             <div className="designBar">
                 Choose Design:
-                <ThemeDesignSwitcher /> 
+                <ThemeDesignSwitcher
+                    isNeuromorphic={isNeuromorphic}
+                    shadowInnerMain={shadowInnerMain}
+                /> 
             </div>
             <div className="buttonsBar">
-                <SaveThemePopup />
+                <SaveThemePopup
+                    isNeuromorphic={isNeuromorphic}
+                    shadowColor={shadowColor}
+                    gradientColor={gradientColor}
+                    buttonShadow={buttonShadow}
+                />
 
                 {isNeuromorphic && (
                     <button

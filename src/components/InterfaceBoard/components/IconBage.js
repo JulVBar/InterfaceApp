@@ -5,7 +5,7 @@ const IconBage = ({main, disabled, gradientColor, shadowOut }) => {
     return (
         <div className="iconBage" style={{boxShadow: shadowOut}}>
             <Icon
-                name='trash'
+                name='chat-bubble'
                 iconColor={disabled}
             />
             <span style={{background: gradientColor, color: main}}>3</span>

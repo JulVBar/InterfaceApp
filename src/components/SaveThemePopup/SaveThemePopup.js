@@ -3,20 +3,14 @@ import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userThemesSetting } from '../../actions';
 import ButtonGradientBorder from '../ButtonGradientBorder/ButtonGradientBorder';
-import { gradient } from '../../constants/styleConstants';
-import { createBoxShadow } from '../../utils/drawFunctions';
 import 'reactjs-popup/dist/index.css';
 import './saveThemePopup.scss';
 
-const SaveThemePopup = () => {
+const SaveThemePopup = ({isNeuromorphic, shadowColor, gradientColor, buttonShadow}) => {
     const [themeName, setThemeName] = useState('');
-    const { colors, userThemes, themeStyle } = useSelector(state => state);
+    const { colors, userThemes } = useSelector(state => state);
     const dispatch = useDispatch();
-
-    const {linear, degrees, from, to} = gradient;
     const {layout, main, primary, secondary, disabled, text} = colors;
-
-    const isNeuromorphic = themeStyle === 'neuromorphic';
 
     const onChangeValue = useCallback(
         (e) => {
@@ -40,16 +34,13 @@ const SaveThemePopup = () => {
             setThemeName('');
         },[themeName, colors, userThemes, dispatch]);
 
-    const buttonColorShadow = isNeuromorphic ? createBoxShadow(true, primary) : 'none';
-    const buttonShadow = createBoxShadow(true, main);
-
     return (
         <Popup
             trigger={<button
                     type="button"
                     className="buttonColor"
-                    style={{background: `${linear}(${degrees}, ${primary} ${from}, ${secondary} ${to})`,
-                            boxShadow: buttonColorShadow,
+                    style={{background: gradientColor,
+                            boxShadow: shadowColor,
                             color: main}}>
                         Save as
                     </button>}
@@ -88,8 +79,8 @@ const SaveThemePopup = () => {
                                     onSubmit(e);
                                     close();
                                 }}
-                                style={{background: `${linear}(${degrees}, ${primary} ${from}, ${secondary} ${to})`,
-                                        boxShadow: buttonColorShadow,
+                                style={{background: gradientColor,
+                                        boxShadow: shadowColor,
                                         color: main}}
                             >
                                 Save

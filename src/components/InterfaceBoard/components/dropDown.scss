@@ -1,0 +1,22 @@
+@import '../../../styles/variables.scss';
+
+.dropDown {
+    list-style: none;
+    width: 70%;
+    padding: 1rem;
+    border-radius: $standard-br;
+
+    li {
+        padding: 1rem;
+        border-radius: $standard-br;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    svg {
+        width: 0.7rem;
+        height: 0.7rem;
+        transform: rotate(90deg);
+    }
+}

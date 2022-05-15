@@ -38,21 +38,3 @@
 .buttonsReset {
     margin-left: 1.5rem;
 }
-
-.flat {
-    // &.colorPanel {
-    //     border: 1px solid grey;
-    // }
-
-    
-}
-
-.neuromorphic {
-    &.colorPanel {
-        box-shadow: $shadowOut;
-    }
-
-    button {
-        box-shadow: $shadowOut;
-    }
-}

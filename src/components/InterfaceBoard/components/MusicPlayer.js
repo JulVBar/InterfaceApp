@@ -50,7 +50,7 @@ const MusicPlayer = ({colors, isNeuromorphic, gradientColor, shadowOut, shadowOu
                         style={{border: iconBorderStyle, boxShadow: shadowOutMain}}
                     >
                         <Icon
-                            name='trash'
+                            name='stop'
                             iconColor={disabled}
                         />
                     </div>
@@ -59,7 +59,7 @@ const MusicPlayer = ({colors, isNeuromorphic, gradientColor, shadowOut, shadowOu
                         style={{border: iconBorderStyle, boxShadow: shadowOutMain}}
                     >
                         <Icon
-                            name='trash'
+                            name='play'
                             iconColor={text}
                         />
                     </div>
@@ -68,7 +68,7 @@ const MusicPlayer = ({colors, isNeuromorphic, gradientColor, shadowOut, shadowOu
                         style={{border: iconBorderStyle, boxShadow: shadowOutMain}}
                     >
                         <Icon
-                            name='trash'
+                            name='pause'
                             iconColor={disabled}
                         />
                     </div>
