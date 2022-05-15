@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import Icon from '../../Icon/Icon';
-import picture from '../../../assets/picture.jpg';
+import picture from '../../../assets/blueBubble.jpg';
 import './musicPlayer.scss';
 
 const MusicPlayer = ({colors, isNeuromorphic, gradientColor, shadowOut, shadowOutMain, shadowInnerMain}) => {
@@ -11,7 +11,7 @@ const MusicPlayer = ({colors, isNeuromorphic, gradientColor, shadowOut, shadowOu
 
     const iconBorderStyle = isNeuromorphic ? 'none' : `1px solid ${disabled}`;
     const sliderBackground = isNeuromorphic ? 'transparent' : disabled;
-    const lineHeight = isNeuromorphic ? '60%' : '100%';
+    const lineHeight = isNeuromorphic ? '60%' : '99%';
     const lineLeftPosition = isNeuromorphic ? '0.2rem' : '0';
 
     return (

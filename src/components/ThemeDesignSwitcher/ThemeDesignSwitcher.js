@@ -31,7 +31,6 @@ const ThemeDesignSwitcher = ({isNeuromorphic, shadowInnerMain}) => {
         >
             <option value="flat">flat</option>
             <option value="neuromorphic">neuromorphic</option>
-            <option value="cyber">cyber</option>
         </select>
     )
 }

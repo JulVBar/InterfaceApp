@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { colorsSetting, setDefaultColors } from '../ColorPanel/colorPanelSlice';
 import { userThemesSetting, setActiveTheme } from './themeSidebarSlice';
-import { GALAXY_THEMES } from '../../constants/galaxyThemesConstants';
+import { THEMES } from '../../constants/themesConstants';
 import Icon from '../Icon/Icon';
 import styled from 'styled-components';
 import './themeSidebar.scss';
@@ -16,7 +16,7 @@ const ThemeSidebar = ({gradientColor, shadowOut, shadowInnerMain}) => {
     const dispatch = useDispatch();
 
     const themes = (Object.values(localStorage)).map(item => JSON.parse(item));
-    const themesList = [...GALAXY_THEMES, ...userThemes];
+    const themesList = [...THEMES, ...userThemes];
 
     useEffect(() => {
         dispatch(userThemesSetting(themes));
