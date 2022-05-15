@@ -1,14 +1,17 @@
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { colorsSetting, userThemesSetting, setDefaultColors, setActiveTheme } from '../../actions';
+import { colorsSetting, setDefaultColors } from '../ColorPanel/colorPanelSlice';
+import { userThemesSetting, setActiveTheme } from './themeSidebarSlice';
 import { GALAXY_THEMES } from '../../constants/galaxyThemesConstants';
 import Icon from '../Icon/Icon';
 import styled from 'styled-components';
 import './themeSidebar.scss';
 
 const ThemeSidebar = ({gradientColor, shadowOut, shadowInnerMain}) => {
-    const { userThemes, activeTheme, themeStyle } = useSelector(state => state);
-    const { main, disabled } = useSelector(state => state.colors);
+    const { userThemes, activeTheme } = useSelector(state => state.themes);
+    const { themeStyle } = useSelector(state => state.themeStyle);
+    const { colors } = useSelector(state => state.colors);
+    const { main, disabled } = colors;
 
     const dispatch = useDispatch();
 

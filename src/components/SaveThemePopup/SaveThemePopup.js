@@ -1,16 +1,27 @@
 import Popup from 'reactjs-popup';
 import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { userThemesSetting } from '../../actions';
+import { userThemesSetting } from '../ThemeSidebar/themeSidebarSlice'; 
 import ButtonGradientBorder from '../ButtonGradientBorder/ButtonGradientBorder';
 import 'reactjs-popup/dist/index.css';
 import './saveThemePopup.scss';
 
-const SaveThemePopup = ({isNeuromorphic, shadowColor, gradientColor, buttonShadow}) => {
+const SaveThemePopup = ({
+    isNeuromorphic, 
+    shadowColor, 
+    gradientColor, 
+    shadowInner, 
+    buttonShadowLayout
+}) => {
     const [themeName, setThemeName] = useState('');
-    const { colors, userThemes } = useSelector(state => state);
     const dispatch = useDispatch();
+
+    const { colors } = useSelector(state => state.colors);
     const {layout, main, primary, secondary, disabled, text} = colors;
+
+    const { userThemes } = useSelector(state => state.themes);
+
+    const inputBorder = isNeuromorphic ? 'none' : `1px solid ${disabled}`;
 
     const onChangeValue = useCallback(
         (e) => {
@@ -27,10 +38,11 @@ const SaveThemePopup = ({isNeuromorphic, shadowColor, gradientColor, buttonShado
                 deletable: true,
                 colors,
             }
-    
+
             localStorage.setItem(`${themeName}`, JSON.stringify(savedTheme));
-            userThemes.push(savedTheme);
-            dispatch(userThemesSetting(userThemes));
+            const tempUserThemes = Object.assign([], userThemes);
+            tempUserThemes.push(savedTheme);
+            dispatch(userThemesSetting(tempUserThemes));
             setThemeName('');
         },[themeName, colors, userThemes, dispatch]);
 
@@ -66,8 +78,9 @@ const SaveThemePopup = ({isNeuromorphic, shadowColor, gradientColor, buttonShado
                             value={themeName}
                             onChange={onChangeValue}
                             placeholder="Theme name..."
-                            style={{border: `1px solid ${disabled}`,
-                                    color: text
+                            style={{border: inputBorder,
+                                    color: text,
+                                    boxShadow:shadowInner 
                             }}
                         />
 
@@ -93,7 +106,7 @@ const SaveThemePopup = ({isNeuromorphic, shadowColor, gradientColor, buttonShado
                                         close();
                                     }}
                                     style={{background: `transparent`,
-                                            boxShadow: buttonShadow,
+                                            boxShadow: buttonShadowLayout,
                                             color: text}}
                                 >
                                     Close

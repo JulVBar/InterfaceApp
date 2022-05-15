@@ -1,15 +1,25 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { colorsSetting, setDefaultColors, setActiveTheme } from '../../actions';
+import { colorsSetting, setDefaultColors } from './colorPanelSlice';
+import { setActiveTheme } from '../ThemeSidebar/themeSidebarSlice';
 import SaveThemePopup from '../SaveThemePopup/SaveThemePopup';
 import ThemeDesignSwitcher from '../ThemeDesignSwitcher/ThemeDesignSwitcher';
 import ButtonGradientBorder from '../ButtonGradientBorder/ButtonGradientBorder';
 
 import './colorPanel.scss';
 
-const ColorPanel = ({isNeuromorphic, shadowOut, shadowInnerMain, shadowColor, gradientColor, buttonShadow}) => {
-    const { colors } = useSelector(state => state);
-    const {main, primary, secondary, text, disabled} = colors;
+const ColorPanel = ({
+    isNeuromorphic,
+    shadowOut,
+    shadowInnerMain,
+    shadowColor,
+    gradientColor,
+    buttonShadow,
+    shadowInner,
+    buttonShadowLayout
+}) => {
+    const { colors } = useSelector(state => state.colors);
+    const { main, primary, secondary, text, disabled } = colors;
     const dispatch = useDispatch();
 
     const colorHandler = useCallback(
@@ -27,8 +37,6 @@ const ColorPanel = ({isNeuromorphic, shadowOut, shadowInnerMain, shadowColor, gr
             dispatch(setActiveTheme(''));
         },[dispatch]);
 
-    
-    
     return (
         <div
             className='colorPanel'
@@ -68,7 +76,8 @@ const ColorPanel = ({isNeuromorphic, shadowOut, shadowInnerMain, shadowColor, gr
                     isNeuromorphic={isNeuromorphic}
                     shadowColor={shadowColor}
                     gradientColor={gradientColor}
-                    buttonShadow={buttonShadow}
+                    shadowInner={shadowInner}
+                    buttonShadowLayout={buttonShadowLayout}
                 />
 
                 {isNeuromorphic && (

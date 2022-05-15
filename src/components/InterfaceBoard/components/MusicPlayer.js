@@ -4,7 +4,7 @@ import picture from '../../../assets/picture.jpg';
 import './musicPlayer.scss';
 
 const MusicPlayer = ({colors, isNeuromorphic, gradientColor, shadowOut, shadowOutMain, shadowInnerMain}) => {
-    const { activeTheme } = useSelector(state => state);
+    const { activeTheme } = useSelector(state => state.themes);
     const { main, disabled, text } = colors;
 
     const activeThemeTitle = activeTheme ? activeTheme.slice(0, 50) : 'Active Theme Title';

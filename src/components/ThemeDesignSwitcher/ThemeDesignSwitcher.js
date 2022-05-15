@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
-import { changeThemeStyle } from '../../actions';
+import { changeThemeStyle } from './themeDesignSwitcherSlice'; 
 
 import './themeDesignSwitcher.scss';
 
 const ThemeDesignSwitcher = ({isNeuromorphic, shadowInnerMain}) => {
-    const { themeStyle } = useSelector(state => state);
-    const { disabled, text } = useSelector(state => state.colors);
+    const { themeStyle } = useSelector(state => state.themeStyle);
+    const { colors } = useSelector(state => state.colors);
+    const { disabled, text, main } = colors;
+    
     const dispatch = useDispatch();
 
     const switchThemeHandler = useCallback(
@@ -23,7 +25,8 @@ const ThemeDesignSwitcher = ({isNeuromorphic, shadowInnerMain}) => {
             onChange={switchThemeHandler}
             style={{border: inputBorder,
                     boxShadow: shadowInnerMain,
-                    color: text
+                    color: text,
+                    background: main
             }}
         >
             <option value="flat">flat</option>

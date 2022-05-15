@@ -7,12 +7,15 @@ import ThemeSidebar from '../ThemeSidebar/ThemeSidebar';
 import './app.scss';
 
 const App = () => {
-    const {layout, main, primary, secondary, text }= useSelector(state => state.colors);
-    const { themeStyle } = useSelector(state => state);
+    const { colors }= useSelector(state => state.colors);
+    const {layout, main, primary, secondary, text } = colors;
+
+    const { themeStyle } = useSelector(state => state.themeStyle);
 
     const isNeuromorphic = themeStyle === 'neuromorphic';
 
     const buttonShadow = createBoxShadow(true, main);
+    const buttonShadowLayout = createBoxShadow(true, layout);
 
     const shadowColor = isNeuromorphic ? createBoxShadow(true, primary) : 'none';
     const shadowOut = isNeuromorphic ? createBoxShadow(true, layout) : 'none';
@@ -36,10 +39,12 @@ const App = () => {
                 <ColorPanel
                     isNeuromorphic={isNeuromorphic}
                     shadowOut={shadowOut}
+                    shadowInner={shadowInner}
                     shadowInnerMain={shadowInnerMain}
                     shadowColor={shadowColor}
                     gradientColor={gradientColor}
                     buttonShadow={buttonShadow}
+                    buttonShadowLayout={buttonShadowLayout}
                 />
                 <div className="wrapper">
                     <ThemeSidebar
@@ -59,7 +64,6 @@ const App = () => {
                         themeStyle={themeStyle}
                     />
                 </div>
-                
             </div>
         </main>
     )

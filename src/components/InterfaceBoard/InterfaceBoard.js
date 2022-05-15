@@ -21,8 +21,8 @@ const InterfaceBoard = ({
     themeStyle,
 }) => {
 
-    const { colors } = useSelector(state => state);
-    const {layout, main, text, disabled} = colors;
+    const { colors } = useSelector(state => state.colors);
+    const { layout, main, text, disabled } = colors;
 
     return (
         <div
