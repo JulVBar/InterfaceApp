@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/InterfaceApp/static/css/main.2baf785e.chunk.css",
-    "main.js": "/InterfaceApp/static/js/main.706d69ac.chunk.js",
-    "main.js.map": "/InterfaceApp/static/js/main.706d69ac.chunk.js.map",
+    "main.js": "/InterfaceApp/static/js/main.417797c8.chunk.js",
+    "main.js.map": "/InterfaceApp/static/js/main.417797c8.chunk.js.map",
     "runtime-main.js": "/InterfaceApp/static/js/runtime-main.f7c8c837.js",
     "runtime-main.js.map": "/InterfaceApp/static/js/runtime-main.f7c8c837.js.map",
     "static/css/2.450bcdb5.chunk.css": "/InterfaceApp/static/css/2.450bcdb5.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.450bcdb5.chunk.css",
     "static/js/2.deb2405b.chunk.js",
     "static/css/main.2baf785e.chunk.css",
-    "static/js/main.706d69ac.chunk.js"
+    "static/js/main.417797c8.chunk.js"
   ]
 }
