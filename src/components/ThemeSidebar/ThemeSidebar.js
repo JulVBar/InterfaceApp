@@ -15,16 +15,7 @@ const ThemeSidebar = ({gradientColor, shadowOut, shadowInnerMain}) => {
 
     const dispatch = useDispatch();
 
-    // const themes = localStorage.length !== 0 ? (Object.values(localStorage)).map(item => JSON.parse(item)) : [];
-    const smth = (Object.values(localStorage));
-    console.log(smth);
-
-    const themes = smth.map(item => {
-        let temp = JSON.parse(item);
-        console.log(temp)
-        return temp;
-    })
-    console.log(themes);
+    const themes = sessionStorage.length !== 0 ? (Object.values(sessionStorage)).map(item => JSON.parse(item)) : [];
 
     useEffect(() => {
         dispatch(userThemesSetting(themes));
@@ -40,7 +31,7 @@ const ThemeSidebar = ({gradientColor, shadowOut, shadowInnerMain}) => {
 
     const onThemeDelete = useCallback(
         (theme) => {
-            localStorage.removeItem(theme.title);
+            sessionStorage.removeItem(theme.title);
             const filteredThemes = userThemes.filter(item => item.title !== theme.title)
             dispatch(userThemesSetting(filteredThemes));
             dispatch(setDefaultColors());

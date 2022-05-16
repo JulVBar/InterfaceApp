@@ -39,7 +39,7 @@ const SaveThemePopup = ({
                 colors,
             }
 
-            localStorage.setItem(`${themeName}`, JSON.stringify(savedTheme));
+            sessionStorage.setItem(`${themeName}`, JSON.stringify(savedTheme));
             const tempUserThemes = Object.assign([], userThemes);
             tempUserThemes.push(savedTheme);
             dispatch(userThemesSetting(tempUserThemes));
