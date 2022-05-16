@@ -71,4 +71,16 @@ export const THEMES = [
             text:"#8a8690",
         },
     },
+    {
+        title: 'Pinky',
+        deletable: false,
+        colors: {
+            layout:"#fed9d0",
+            main:"#fce7e2",
+            disabled:"#C8C8CE",
+            primary:"#f6a673",
+            secondary:"#d162c9",
+            text:"#0F0E0E",
+        },
+    },
 ]
