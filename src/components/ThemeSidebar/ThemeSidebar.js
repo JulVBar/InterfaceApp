@@ -16,13 +16,22 @@ const ThemeSidebar = ({gradientColor, shadowOut, shadowInnerMain}) => {
     const dispatch = useDispatch();
 
     // const themes = localStorage.length !== 0 ? (Object.values(localStorage)).map(item => JSON.parse(item)) : [];
+    const smth = (Object.values(localStorage));
+    console.log(smth);
+
+    const themes = smth.map(item => {
+        let temp = JSON.parse(item);
+        console.log(temp)
+        return temp;
+    })
+    console.log(themes);
+
+    useEffect(() => {
+        dispatch(userThemesSetting(themes));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     
     const themesList = [...THEMES, ...userThemes];
-
-    // useEffect(() => {
-    //     dispatch(userThemesSetting(themes));
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
 
     const onThemeChange = useCallback(
         (theme) => {
