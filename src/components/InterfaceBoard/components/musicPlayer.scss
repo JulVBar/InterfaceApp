@@ -13,6 +13,10 @@
     &__image {
         border-radius: $standard-br;
         width: 40%;
+
+        @include breakpoint($mobile) {
+            width: 30%;
+        }
     
         img {
             border-radius: $standard-br;
@@ -29,6 +33,10 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        @include breakpoint($mobile) {
+            width: 65%;
+        }
     
         h3 {
             line-height: 1.3rem;

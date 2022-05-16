@@ -54,7 +54,7 @@ const InterfaceBoard = ({
             </div>
             <div className='interfaceBoardColumn'>
                 <div className='interfaceBoardColumn--top'>
-                    <div>
+                    <div className='interfaceBoardColumn--buttons'>
                         <IconBage 
                             main={main}
                             disabled={disabled}

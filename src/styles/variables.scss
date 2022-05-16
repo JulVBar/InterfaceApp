@@ -1,3 +1,27 @@
 $standard-br: 10px;
 $padding: 1rem 1.5rem;
 $height: 34rem;
+
+//media
+$desktop: 1300px;
+$tablet: 950px;
+$mobile: 650px;
+$mini-mobile: 410px;
+
+@mixin breakpoint($bp) {
+    @media (max-width: $bp) {
+        @content;
+    }
+}
+
+// @mixin breakpoint-min($bp) {
+//     @media (min-width: $bp) {
+//         @content;
+//     }
+// }
+
+// @mixin breakpoint-height($bp) {
+//     @media (max-height: $bp) {
+//         @content;
+//     }
+// }

@@ -12,7 +12,7 @@ export const THEMES = [
         },
     },
     {
-        title: 'Blue Bubble Galaxy',
+        title: 'Blue Galaxy',
         deletable: false,
         colors: {
             layout:"#727586",

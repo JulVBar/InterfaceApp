@@ -4,6 +4,9 @@
     &__list {
         list-style: none;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         li {
             position: relative;
@@ -38,6 +41,7 @@
     }
 
     &__content {
+        width: 23rem;
         margin-left: 2rem;
         padding: 0.5rem 0.5rem 0.5rem 2rem;
         border-radius: $standard-br;
