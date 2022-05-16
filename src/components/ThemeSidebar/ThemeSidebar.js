@@ -15,7 +15,8 @@ const ThemeSidebar = ({gradientColor, shadowOut, shadowInnerMain}) => {
 
     const dispatch = useDispatch();
 
-    const themes = (Object.values(localStorage)).map(item => JSON.parse(item));
+    const themes = localStorage.length !== 0 ? (Object.values(localStorage)).map(item => JSON.parse(item)) : [];
+    
     const themesList = [...THEMES, ...userThemes];
 
     useEffect(() => {
